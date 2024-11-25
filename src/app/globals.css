@@ -1,0 +1,27 @@
+@tailwind base;
+
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .container-wide {
+    @apply mx-4;
+  }
+}
+
+:root {
+  --swiper-pagination-color: white;
+  --swiper-pagination-bullet-width: 50px;
+  --swiper-pagination-bullet-height: 6px;
+  --swiper-pagination-bullet-inactive-color: white;
+  --swiper-pagination-bullet-inactive-opacity: 0.2;
+  --swiper-pagination-bullet-opacity: 1;
+  --swiper-pagination-bullet-horizontal-gap: 8px;
+  --swiper-pagination-bullet-vertical-gap: 10px;
+  --swiper-pagination-bullet-border-radius: 10px;
+
+  --swiper-navigation-color: rgba(255, 255, 255);
+  --swiper-navigation-disabled-opacity: 0.35;
+  --swiper-navigation-background: rgba(255, 255, 255);
+  --swiper-navigation-border-radius: 50%;
+}
