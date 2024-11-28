@@ -22,9 +22,9 @@ export default function Footer() {
                 <Link href="/#contact">Contact Us</Link>
               </div>
               <div className="flex flex-col md:flex-row gap-2 md:gap-4 items-center">
-                <Link href="/terms">Terms & Conditions</Link>
+                <Link href="/rules-and-regulations">Rules & Regulations</Link>
                 <span className="hidden md:block">|</span>
-                <Link href="/privacy">Privacy Policy</Link>
+                <Link href="/privacy-policy">Privacy Policy</Link>
               </div>
               <p className="text-dark/60 font-metropolis-regular text-sm text-center md:text-left">
                 Beit Mema | ALL RIGHTS RESERVED

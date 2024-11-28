@@ -3,15 +3,20 @@ import Image from "next/image";
 import Link from "next/link";
 import { Menu, X } from "lucide-react";
 import { useState } from "react";
+import clsx from "clsx";
 
-export default function Navbar() {
+interface Props {
+  logoDark?: boolean;
+}
+
+export default function Navbar(props?: Props) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
     <div className="container mx-auto px-5 md:px-4 flex items-center justify-between py-4 md:py-8 absolute top-4 lg:top-0 left-0 right-0 z-50">
       <Link href="/">
         <Image
-          src={"/logo.png"}
+          src={props?.logoDark ? "/logo-black.png" : "/logo.png"}
           alt="Beit Mema Logo"
           width={80}
           height={80}
@@ -28,7 +33,15 @@ export default function Navbar() {
       </button>
 
       {/* Desktop Menu */}
-      <div className="hidden md:flex items-center gap-8 text-white font-metropolis-regular text-lg">
+      <div
+        className={clsx(
+          "hidden md:flex items-center gap-8 font-metropolis-regular text-lg",
+          {
+            "text-dark": props?.logoDark,
+            "text-white": !props?.logoDark,
+          }
+        )}
+      >
         <Link className="hover:underline" href="/things-to-do">
           Things to do
         </Link>
@@ -58,4 +71,7 @@ export default function Navbar() {
       )}
     </div>
   );
+}
+function useGeneralStore(): { logoDark: any; setLogoDark: any } {
+  throw new Error("Function not implemented.");
 }

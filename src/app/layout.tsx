@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
 import Footer from "@/components/Footer";
-import Navbar from "@/components/Navbar";
 
 const aesthetic = localFont({
   src: "./fonts/Aesthetic-Regular.ttf",
@@ -64,7 +63,6 @@ export default function RootLayout({
           antialiased
         `}
       >
-        <Navbar />
         {children}
         <Footer />
       </body>

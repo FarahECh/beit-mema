@@ -1,5 +1,5 @@
 interface Props {
-  imageUrl: string;
+  imageUrl?: string;
   children: React.ReactNode;
   className?: string;
 }
@@ -9,15 +9,19 @@ export default function CoverPhoto(props: Props) {
     <section
       className={`h-[800px] container-wide relative mt-3 rounded-xl ${props.className}`}
       style={{
-        backgroundImage: `url(${props.imageUrl})`,
+        backgroundImage: props.imageUrl ? `url(${props.imageUrl})` : "none",
         backgroundSize: "cover",
         backgroundPosition: "center",
         backgroundRepeat: "no-repeat",
       }}
     >
-      <div className="absolute inset-0 bg-black/40 rounded-xl flex items-center justify-center text-white flex-col text-center">
-        {props.children}
-      </div>
+      {props.imageUrl ? (
+        <div className="absolute inset-0 bg-black/40 rounded-xl flex items-center justify-center text-white flex-col text-center">
+          {props.children}
+        </div>
+      ) : (
+        props.children
+      )}
     </section>
   );
 }

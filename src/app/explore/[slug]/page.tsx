@@ -1,3 +1,4 @@
+import Navbar from "@/components/Navbar";
 import { GUEST_HOUSES } from "@/constants/guesthouses";
 import ExplorePage from "@/features/explorePage";
 
@@ -9,5 +10,10 @@ export default async function Explore({
   const { slug } = await params;
   const guestHouse = GUEST_HOUSES.find((item) => item.name === slug);
 
-  return <ExplorePage guestHouse={guestHouse} />;
+  return (
+    <>
+      <Navbar />
+      <ExplorePage guestHouse={guestHouse} />
+    </>
+  );
 }
