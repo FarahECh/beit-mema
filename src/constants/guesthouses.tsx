@@ -125,7 +125,7 @@ export const GUEST_HOUSES = [
     whenCheckIn: "pm",
     checkOut: "12:00",
     whenCheckOut: "pm",
-    pricePerNight: 300,
+    pricePerNight: 325,
     coverImage: 20,
     guests: 8,
     bedrooms: 4,
