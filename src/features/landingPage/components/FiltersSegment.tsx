@@ -1,5 +1,6 @@
 "use client";
 import { CONTACT_INFO, GUEST_HOUSES } from "@/constants/guesthouses";
+import { motion, AnimatePresence } from "framer-motion";
 import {
   PhoneIcon,
   MailIcon,
@@ -9,19 +10,23 @@ import {
   Facebook,
   Instagram,
   MessageCircle,
+  ArrowDown,
+  ChevronDown,
 } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";
 
 export default function FiltersSegment() {
   const [guestHouse, setGuestHouse] = useState<number>(0);
+  const [selectOpen, setSelectOpen] = useState(false);
+
   return (
     <div className="bg-brand-gray container absolute -bottom-14 z-20 left-1/2 -translate-x-1/2 rounded-xl shadow-md">
       {/* Mobile view */}
       <div className="md:hidden bg-main rounded-xl p-4 text-white">
         <div className="grid grid-cols-2 gap-4">
           {/* check in */}
-          <div className="flex flex-col gap-1">
+          <div className="flex flex-col gap-1 ">
             <div className="flex items-center gap-1 opacity-70">
               <Clock className="h-3 w-3" />
               <p className="text-xs font-metropolis-medium">Check in</p>
@@ -79,7 +84,7 @@ export default function FiltersSegment() {
               className="bg-white/30 rounded-md text-white p-1 text-sm w-full cursor-pointer"
             >
               {GUEST_HOUSES.map((house, index) => (
-                <option key={house.name} value={index}>
+                <option className="text-black" key={house.name} value={index}>
                   {house.name}
                 </option>
               ))}
@@ -162,7 +167,7 @@ export default function FiltersSegment() {
               <p className="text-sm font-metropolis-medium">Guesthouse</p>
             </div>
             <div className="flex items-end gap-1">
-              <select
+              {/* <select
                 value={guestHouse}
                 onChange={(e) => setGuestHouse(Number(e.target.value))}
                 name="guestHouse"
@@ -173,7 +178,47 @@ export default function FiltersSegment() {
                     {house.name}
                   </option>
                 ))}
-              </select>
+              </select> */}
+
+              <button
+                onClick={() => setSelectOpen(!selectOpen)}
+                className="bg-white/30 rounded-md text-white p-1 w-32 cursor-pointer relative font-metropolis-medium"
+              >
+                <div className="flex items-center gap-2 justify-center">
+                  <p>{GUEST_HOUSES[guestHouse].name}</p>{" "}
+                  <ChevronDown className="h-4 w-4 mt-1" />
+                </div>
+                <AnimatePresence>
+                  {selectOpen && (
+                    <motion.div
+                      initial={{
+                        opacity: 0,
+                      }}
+                      animate={{
+                        opacity: 1,
+                      }}
+                      className="absolute w-full -bottom-32 z-20 left-0 rounded-md bg-white shadow-sm text-black flex flex-col gap-2 items-center overflow-hidden"
+                    >
+                      {GUEST_HOUSES.map((house, index) => (
+                        <span
+                          onClick={() => {
+                            setGuestHouse(index);
+                            setSelectOpen(false);
+                          }}
+                          key={house.name}
+                          className={`w-full py-2 px-4 text-sm hover:bg-gray-100 active:bg-gray-200 transition-all ${
+                            index === guestHouse
+                              ? "font-medium text-brand-main bg-gray-50"
+                              : "text-gray-700"
+                          }`}
+                        >
+                          {house.name}
+                        </span>
+                      ))}
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </button>
             </div>
           </div>
         </div>
