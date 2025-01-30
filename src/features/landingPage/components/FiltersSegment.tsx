@@ -3,14 +3,11 @@ import { CONTACT_INFO, GUEST_HOUSES } from "@/constants/guesthouses";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   PhoneIcon,
-  MailIcon,
   Clock,
   User,
   House,
   Facebook,
   Instagram,
-  MessageCircle,
-  ArrowDown,
   ChevronDown,
 } from "lucide-react";
 import Link from "next/link";
