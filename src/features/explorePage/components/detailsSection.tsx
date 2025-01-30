@@ -5,11 +5,22 @@ import { GUEST_HOUSES } from "@/constants/guesthouses";
 import ExpandingButton from "@/features/landingPage/components/ExpandingButton";
 import pluralize from "pluralize";
 
+const omittedAmenitisByGuesthouse = {
+  Noura: ["Chimney"],
+};
+
 interface Props {
   guestHouse: (typeof GUEST_HOUSES)[number];
 }
 
 export default function DetailsSection({ guestHouse }: Props) {
+  const filteredAmenities = guestHouse.amenities.filter(
+    (amenity) =>
+      !omittedAmenitisByGuesthouse[
+        guestHouse.name as keyof typeof omittedAmenitisByGuesthouse
+      ]?.includes(amenity)
+  );
+
   return (
     <div className="flex flex-col md:flex-row gap-4 text-white md:h-[600px]">
       {/* Left Column - Title and Description */}
@@ -80,7 +91,7 @@ export default function DetailsSection({ guestHouse }: Props) {
         <div>
           <h2 className="mb-3 md:mb-4 font-metropolis-medium">Amenities</h2>
           <div className="flex flex-wrap gap-2">
-            {guestHouse.amenities.map((amenity) => (
+            {filteredAmenities.map((amenity) => (
               <span
                 key={amenity}
                 className="border border-white px-2 text-sm md:text-base font-metropolis-regular"
